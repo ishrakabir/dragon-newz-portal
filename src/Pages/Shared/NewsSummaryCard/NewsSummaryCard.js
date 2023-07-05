@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image'
-import { FaBookmark, FaEye, FaShareNodes, FaStar } from 'react-icons/fa6';
+import { FaRegBookmark, FaEye, FaShareNodes, FaStar } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
 const NewsSummaryCard = ({ news }) => {
@@ -23,7 +23,7 @@ const NewsSummaryCard = ({ news }) => {
                         </div>
                     </div>
                     <div>
-                        <FaBookmark></FaBookmark>
+                        <FaRegBookmark className='me-2'></FaRegBookmark>
                         <FaShareNodes></FaShareNodes>
                     </div>
                 </Card.Header>
