@@ -6,18 +6,21 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import BrandCarousel from '../BrandCarousel/BrandCarousel';
 import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const RightSideNav = () => {
     const provider = new GoogleAuthProvider();
-
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const { providerLogin } = useContext(AuthContext);
     const handleLogin = () => {
         providerLogin(provider)
         .then((result) => {
             const user = result.user; 
             console.log(user);
-
+            navigate(from, { replace: true });
         })
             .catch(error => {
                 console.error(error);

@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const [checked, setChecked] = useState();
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
@@ -18,11 +21,31 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('');
+                handleProfile(name,photoUrl)
                 form.reset();
                 
             })
             .catch(error =>
-                console.error(error))
+            {
+                console.error(error)
+                setError(error.message)
+            })
+    }
+    const handleProfile = (name, photoUrl) => {
+        const profile = {
+            displayName: name,
+            photoURL:photoUrl
+        }
+        updateUserProfile(profile)
+            .then(() => {
+                
+            }).catch((error) => {
+              
+            });
+    }
+    const handleChecked = event => {
+        setChecked(event.target.checked);
     }
     return (
         <div>
@@ -48,9 +71,13 @@ const Register = () => {
                         We'll never share your email with anyone else.
                     </Form.Text>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Check onClick={handleChecked} type="checkbox" label={<>Accept <Link className='text-decoration-none' to='/terms'>Terms And Condition</Link></>} />
+                </Form.Group>
+                <Button  variant="primary" type="submit" disabled={!checked}>
                     Register
                 </Button>
+                {error}
             </Form>
         </div>
     );
