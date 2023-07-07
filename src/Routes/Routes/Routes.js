@@ -16,7 +16,7 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home,
+                element: <Home></Home>,
                 loader: () => fetch('https://dragon-news-server-flax-one.vercel.app/news')
             },
             {
