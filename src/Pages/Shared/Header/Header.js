@@ -42,7 +42,7 @@ const Header = () => {
                             user?.uid ?
                                 <>
                                     <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
-                                    <Nav.Link eventKey={2} href="#memes">
+                                    <Link to='/profile'>
                                         {
                                             user?.photoURL ?
                                                 <Image
@@ -53,7 +53,7 @@ const Header = () => {
                                                 : <FaUser></FaUser>
                                         }
                                         <button onClick={handleLogout} type="button" className="btn btn-light ms-2">Logout</button>
-                                    </Nav.Link></>
+                                    </Link></>
                                 :
                                 <>
                                     <Link to='/login'>
