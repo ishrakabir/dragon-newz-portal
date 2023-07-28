@@ -4,9 +4,11 @@ import Image from 'react-bootstrap/Image'
 import { FaRegBookmark, FaEye, FaShareNodes, FaStar } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
-const NewsSummaryCard = ({ news }) => {
-    const { author, title, _id, total_view, image_url, details, rating } = news
 
+const NewsSummaryCard = ({ news }) => {
+    const { author, title, _id, total_view, image_url, details, rating } = news;
+
+  
     return (
         <div>
             <Card className='mb-4'>
